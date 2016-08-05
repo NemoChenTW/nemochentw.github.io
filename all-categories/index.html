@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Nemo Note">
-    <title>Archivos: 2016/8 - Nemo Note</title>
+    <title>all-categories - Nemo Note</title>
     <meta name="author" content="Nemo Chen">
     
     
@@ -14,11 +14,12 @@
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
     <meta property="og:type" content="blog">
-<meta property="og:title" content="Nemo Note">
-<meta property="og:url" content="http://nemochentw.github.io/archives/2016/08/index.html">
+<meta property="og:title" content="all-categories">
+<meta property="og:url" content="http://nemochentw.github.io/all-categories/index.html">
 <meta property="og:site_name" content="Nemo Note">
+<meta property="og:updated_time" content="2016-08-05T06:21:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nemo Note">
+<meta name="twitter:title" content="all-categories">
     
     
         
@@ -168,89 +169,31 @@
                         hasCoverMetaIn
                         ">
                 
-    <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                            SSH KEY 新增 &amp; 多重key設定方式
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-08-05T13:48:41+08:00">
-	
-		    05 8月 2016
-    	
-    </time>
-    
-        <span>en </span>
+<div id="categories-archives" class="main-content-wrap">
+    <form id="filter-form" action="##">
+        <input name="category" type="text" class="form-control input--xlarge"
+               placeholder="Buscar categoría" autofocus="autofocus">
+    </form>
+    <h5 class="archive-result text-color-base text-xlarge"
+        data-message-zero="no se encontraron categorías"
+        data-message-one="1 categoría encontrada"
+        data-message-other="{n} categorias encontradas"></h5>
+
+        <section class="boxes">
         
-    <a class="category-link" href="/categories/Technical/">Technical</a>
-
-
-    
+            
+                <div><a href="#posts-list-Technical" class="category-anchor" data-category="technical" data-parent-categories="">Technical</a></div>
+            
+        
+    </section>
+    <section class="boxes">
+        
+            
+                    <div id="posts-list-Technical" class="archive box" data-category="technical" data-parent-categories=""><h4 class="archive-title text-xlarge"><a class="link-unstyled" href="/categories/Technical/">Technical (1)</a></h4><ul class="archive-posts"><li class="archive-post"><a class="archive-post-title" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/">SSH KEY 新增 & 多重key設定方式</a><span class="archive-post-date"> - 05 8月 2016</span></li></ul></div>
+            
+        
+    </section>
 </div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p><strong>產生SSH KEY</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -f ~/.ssh/sshkeyfilename -C &quot;yourIdOrMail&quot;</div></pre></td></tr></table></figure></p>
-<p><strong>多重ssh key 設定方式</strong></p>
-<p>Format<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host alias</div><div class="line">HostName bitbucket.org</div><div class="line">IdentityFile ~/.ssh/identity</div></pre></td></tr></table></figure></p>
-<p>Example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">host gitoadmin</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/adminkey</div><div class="line"></div><div class="line">host nemogito</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/nemogitokey</div><div class="line"></div><div class="line">host nemochentwBitbucket</div><div class="line">    hostname bitbucket.org</div><div class="line">    IdentityFile ~/.ssh/nemochentwBitbucket</div></pre></td></tr></table></figure></p>
-<p>The Repo will become like.</p>
-<ul>
-<li>git@someurl.com:gitolite-admin<ul>
-<li>=&gt; git@gitoadmin:gitolite-admin (This will use adminkey)</li>
-</ul>
-</li>
-<li>git@someurl.com:ReaderLibrary<ul>
-<li>=&gt; git@nemogito:ReaderLibrary (This will use nemogitokey)</li>
-</ul>
-</li>
-<li>git@bitbucket.org:NemoChenTW/someproject.git<ul>
-<li>=&gt; git@nemochentwBitbucket:NemoChenTW/someproject.git (This will use nemochentwBitbucket)</li>
-</ul>
-</li>
-</ul>
-<p><strong>參考資料</strong></p>
-<ul>
-<li><a href="https://confluence.atlassian.com/bitbucket/configure-multiple-ssh-identities-for-gitbash-mac-osx-linux-271943168.html" target="_blank" rel="external">Configure multiple SSH identities for GitBash, Mac OSX, &amp; Linux</a></li>
-</ul>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2016/08/05/SSH-KEY-新增-多重key設定方式/#post-footer" class="postShorten-excerpt_link link">
-                                Comentar y compartir
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">página 1 de 1</li>
-    </ul>
-</div>
-
-</section>
-
-
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
