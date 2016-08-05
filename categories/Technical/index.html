@@ -6,32 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Nemo Note">
-    <title>SSH KEY 新增 &amp; 多重key設定方式 - Nemo Note</title>
+    <title>Category: Technical - Nemo Note</title>
     <meta name="author" content="Nemo Chen">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="產生SSH KEY1ssh-keygen -f ~/.ssh/sshkeyfilename -C &amp;quot;yourIdOrMail&amp;quot;
-多重ssh key 設定方式
-Format123Host aliasHostName bitbucket.orgIdentityFile ~/.ssh/identity
-Example1234567891011host gitoadmin    hos">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="SSH KEY 新增 & 多重key設定方式">
-<meta property="og:url" content="http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/index.html">
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="Nemo Note">
+<meta property="og:url" content="http://nemochentw.github.io/categories/Technical/index.html">
 <meta property="og:site_name" content="Nemo Note">
-<meta property="og:description" content="產生SSH KEY1ssh-keygen -f ~/.ssh/sshkeyfilename -C &amp;quot;yourIdOrMail&amp;quot;
-多重ssh key 設定方式
-Format123Host aliasHostName bitbucket.orgIdentityFile ~/.ssh/identity
-Example1234567891011host gitoadmin    hos">
-<meta property="og:updated_time" content="2016-08-05T06:13:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSH KEY 新增 & 多重key設定方式">
-<meta name="twitter:description" content="產生SSH KEY1ssh-keygen -f ~/.ssh/sshkeyfilename -C &amp;quot;yourIdOrMail&amp;quot;
-多重ssh key 設定方式
-Format123Host aliasHostName bitbucket.orgIdentityFile ~/.ssh/identity
-Example1234567891011host gitoadmin    hos">
+<meta name="twitter:title" content="Nemo Note">
     
     
         
@@ -54,7 +41,7 @@ Example1234567891011host gitoadmin    hos">
 
     
 
-<header id="header" data-behavior="4">
+<header id="header" data-behavior="1">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">Nemo Note</a>
@@ -72,7 +59,7 @@ Example1234567891011host gitoadmin    hos">
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="4">
+<nav id="sidebar" data-behavior="1">
     <div class="sidebar-container">
         
         
@@ -176,21 +163,26 @@ Example1234567891011host gitoadmin    hos">
 </nav>
 
             
-            <div id="main" data-behavior="4"
+            <div id="main" data-behavior="1"
                  class="
                         hasCoverMetaIn
                         ">
                 
-<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    <section class="postShorten-group main-content-wrap">
     
     
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title" itemprop="headline">
-            SSH KEY 新增 &amp; 多重key設定方式
-        </h1>
-    
-    <div class="post-meta">
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/">
+                            SSH KEY 新增 &amp; 多重key設定方式
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
     <time itemprop="datePublished" datetime="2016-08-05T13:48:41+08:00">
 	
 		    8月 05, 2016
@@ -205,11 +197,10 @@ Example1234567891011host gitoadmin    hos">
     
 </div>
 
-</div>
-    
-    <div class="post-content markdown" itemprop="articleBody">
-        <div class="main-content-wrap">
-            <p><strong>產生SSH KEY</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -f ~/.ssh/sshkeyfilename -C &quot;yourIdOrMail&quot;</div></pre></td></tr></table></figure></p>
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <p><strong>產生SSH KEY</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -f ~/.ssh/sshkeyfilename -C &quot;yourIdOrMail&quot;</div></pre></td></tr></table></figure></p>
 <p><strong>多重ssh key 設定方式</strong></p>
 <p>Format<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host alias</div><div class="line">HostName bitbucket.org</div><div class="line">IdentityFile ~/.ssh/identity</div></pre></td></tr></table></figure></p>
 <p>Example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">host gitoadmin</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/adminkey</div><div class="line"></div><div class="line">host nemogito</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/nemogitokey</div><div class="line"></div><div class="line">host nemochentwBitbucket</div><div class="line">    hostname bitbucket.org</div><div class="line">    IdentityFile ~/.ssh/nemochentwBitbucket</div></pre></td></tr></table></figure></p>
@@ -233,77 +224,31 @@ Example1234567891011host gitoadmin    hos">
 <li><a href="https://confluence.atlassian.com/bitbucket/configure-multiple-ssh-identities-for-gitbash-mac-osx-linux-271943168.html" target="_blank" rel="external">Configure multiple SSH identities for GitBash, Mac OSX, &amp; Linux</a></li>
 </ul>
 
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/2016/08/05/SSH-KEY-新增-多重key設定方式/#post-footer" class="postShorten-excerpt_link link">
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
             
         </div>
-    </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
         
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">TAGGED IN</span><br/>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/Unix/">Unix</a> <a class="tag tag--primary tag--small t-link" href="/tags/git/">git</a> <a class="tag tag--primary tag--small t-link" href="/tags/ssh/">ssh</a>
-
-            </div>
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
         
-        <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
         
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
+        <li class="pagination-number">page 1 of 1</li>
     </ul>
 </div>
 
-
-        
-            
-        
-    </div>
-</article>
+</section>
 
 
 
@@ -314,84 +259,6 @@ Example1234567891011host gitoadmin    hos">
 </footer>
 
             </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-    <ul class="share-options">
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nemochentw.github.io/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
-
             
         </div>
         
@@ -475,8 +342,6 @@ Example1234567891011host gitoadmin    hos">
         <!--SCRIPTS-->
 <script src="/assets/js/script-rt08quwts7iav5x0cfd2ym0gb5qkd1lvrsmwrakxtkhefmaaes4ywkmnjnwf.min.js"></script>
 <!--SCRIPTS END-->
-
-    
 
 
 
