@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Nemo Note">
-    <title>所有文章 - Nemo Note</title>
+    <title>標籤: C++ - Nemo Note</title>
     <meta name="author" content="Nemo Chen">
     
     
@@ -15,7 +15,7 @@
     
     <meta property="og:type" content="blog">
 <meta property="og:title" content="Nemo Note">
-<meta property="og:url" content="http://nemochentw.github.io/archives/index.html">
+<meta property="og:url" content="http://nemochentw.github.io/tags/C/index.html">
 <meta property="og:site_name" content="Nemo Note">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nemo Note">
@@ -318,76 +318,6 @@
         
     </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                            SSH KEY 新增 &amp; 多重key設定方式
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-08-05T13:48:41+08:00">
-	
-		    8月 05, 2016
-    	
-    </time>
-    
-        <span>分類 </span>
-        
-    <a class="category-link" href="/categories/Technical/">Technical</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p><strong>產生SSH KEY</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -f ~/.ssh/sshkeyfilename -C &quot;yourIdOrMail&quot;</div></pre></td></tr></table></figure></p>
-<p><strong>多重ssh key 設定方式</strong></p>
-<p>Format<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host alias</div><div class="line">HostName bitbucket.org</div><div class="line">IdentityFile ~/.ssh/identity</div></pre></td></tr></table></figure></p>
-<p>Example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">host gitoadmin</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/adminkey</div><div class="line"></div><div class="line">host nemogito</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/nemogitokey</div><div class="line"></div><div class="line">host nemochentwBitbucket</div><div class="line">    hostname bitbucket.org</div><div class="line">    IdentityFile ~/.ssh/nemochentwBitbucket</div></pre></td></tr></table></figure></p>
-<p>The Repo will become like.</p>
-<ul>
-<li>git@someurl.com:gitolite-admin<ul>
-<li>=&gt; git@gitoadmin:gitolite-admin (This will use adminkey)</li>
-</ul>
-</li>
-<li>git@someurl.com:ReaderLibrary<ul>
-<li>=&gt; git@nemogito:ReaderLibrary (This will use nemogitokey)</li>
-</ul>
-</li>
-<li>git@bitbucket.org:NemoChenTW/someproject.git<ul>
-<li>=&gt; git@nemochentwBitbucket:NemoChenTW/someproject.git (This will use nemochentwBitbucket)</li>
-</ul>
-</li>
-</ul>
-<p><strong>參考資料</strong></p>
-<ul>
-<li><a href="https://confluence.atlassian.com/bitbucket/configure-multiple-ssh-identities-for-gitbash-mac-osx-linux-271943168.html" target="_blank" rel="external">Configure multiple SSH identities for GitBash, Mac OSX, &amp; Linux</a></li>
-</ul>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2016/08/05/SSH-KEY-新增-多重key設定方式/#post-footer" class="postShorten-excerpt_link link">
-                                留言與分享
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -397,7 +327,6 @@
 </div>
 
 </section>
-
 
 
                 <footer id="footer" class="main-content-wrap">

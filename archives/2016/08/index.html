@@ -200,6 +200,131 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                            Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects)
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-08-12T23:02:20+08:00">
+	
+		    8月 12, 2016
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <h2 id="Windows-Object-Signal"><a href="#Windows-Object-Signal" class="headerlink" title="Windows Object Signal"></a>Windows Object Signal</h2><ul>
+<li><strong>有信號</strong> =&gt; Object可使用(閒置 Signaled)</li>
+<li><strong>無信號</strong> =&gt; Object正在被使用(運行中 non-Signaled)</li>
+</ul>
+<p>記憶方式可參考下圖<br><img src="https://googledrive.com/host/0B38IBXjEyL6JbDRqUDZJVVNva3M" alt="signaled &amp; non-signaled"></p>
+<p>更詳細的signaled &amp; non-signaled說明可參考<a href="http://stackoverflow.com/a/17613774" target="_blank" rel="external">Stackoverflow</a></p>
+<blockquote>
+<p>==Santhosh Pai asked:==<br>“A signaled state indicates a resource is available for a process or thread to use it. A not-signaled state indicates the resource is in use.”</p>
+<p>==rodrigo’s answered:==<br>“Actually, that is an interpretation. Usually there is a resource you are trying to arbitrate, and usually you wait if-and-only-if that resource is in use, so it is making the equivalence between resource-in-use and wait-for-resource. But that’s not a technical requiremente, just a usual use-case.”</p>
+</blockquote>
+<h2 id="WaitForSingleObject-WaitForMultipleObjecct"><a href="#WaitForSingleObject-WaitForMultipleObjecct" class="headerlink" title="WaitForSingleObject() / WaitForMultipleObjecct"></a>WaitForSingleObject() / WaitForMultipleObjecct</h2><ul>
+<li>Object有信號時會返回 (表示Object可以被執行)</li>
+</ul>
+<h2 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h2><ul>
+<li>SetEvent() =&gt; 設定為觸發狀態(signaled, Event閒置中)</li>
+<li>ResetEvent() =&gt; 設定為未觸發狀態(non-signaled, Event使用中)</li>
+</ul>
+<h2 id="Event-Handle"><a href="#Event-Handle" class="headerlink" title="Event Handle"></a>Event Handle</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function">HANDLE WINAPI <span class="title">CreateEvent</span><span class="params">(</span></span></div><div class="line">  <span class="number">_</span>In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,</div><div class="line">  <span class="number">_</span>In_    BOOL                  bManualReset,</div><div class="line">  <span class="number">_</span>In_    BOOL                  bInitialState,</div><div class="line">  <span class="number">_</span>In_opt_ LPCTSTR              lpName</div><div class="line">);</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Parameters</strong><ul>
+<li>lpEventAttributes =&gt; SECURITY_ATTRIBUTES, 設定為NULL表示此handle不可被繼承</li>
+<li>bManualReset =&gt; <strong>TRUE</strong>表示必須手動呼叫ResetEvent(), <strong>FALSE</strong>表示會自動呼叫ResetEvent()</li>
+<li>bInitialState =&gt; <strong>TRUE</strong>表示初始狀態為signaled</li>
+<li>lpName =&gt; event object的名稱</li>
+</ul>
+</li>
+</ul>
+<h2 id="WaitForSingleObject"><a href="#WaitForSingleObject" class="headerlink" title="WaitForSingleObject()"></a>WaitForSingleObject()</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function">DWORD WINAPI <span class="title">WaitForSingleObject</span><span class="params">(</span></span></div><div class="line">  <span class="number">_</span>In_ HANDLE hHandle,</div><div class="line">  <span class="number">_</span>In_ DWORD dwMilliseconds</div><div class="line">);</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Parameters</strong><ul>
+<li>hHandle =&gt; 等待物件(目標)的Handler</li>
+<li>dwMilliseconds =&gt; 等待時間 (可設定為INFINITE)</li>
+</ul>
+</li>
+<li><strong>可以Wait以下目標</strong><ul>
+<li>Event，Mutex，Semaphore，Process，Thread</li>
+</ul>
+</li>
+<li><strong>返回值</strong><ul>
+<li>WAIT_OBJECT_0(目標執行結束, 可被執行)</li>
+<li>WAIT_TIMEOUT(等待時間結束, 目標仍在執行)</li>
+<li>WAIT_ABANDONED(目標執行結束, 但還不能執行)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">HANDLE handleEvent = CreateEvent(<span class="literal">NULL</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="string">"TestEvent"</span>)</div><div class="line"></div><div class="line"><span class="comment">// 此時handleEvent狀態為 signaled</span></div><div class="line"></div><div class="line"><span class="keyword">void</span> doSomeEventProcess()</div><div class="line">&#123;</div><div class="line">	ResetEvent(handleEvent); <span class="comment">// Reset event to non-signaled (使用中)</span></div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"This is doing event process\n"</span>)</div><div class="line">	<span class="comment">// Do some other event process</span></div><div class="line"></div><div class="line">	sleep(<span class="number">5000</span>); <span class="comment">// Windows下sleep 5秒</span></div><div class="line"></div><div class="line">	SetEvent(handleEvent); <span class="comment">// Set event to signaled (閒置)</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">doOtherProcessAfterEventDone</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">// 會等到handleEvent閒置才執行 (Wait until handleEvent signaled)</span></div><div class="line">	<span class="keyword">if</span>(WaitForSingleObject(handleEvent, INFINITE) == WAIT_OBJECT_0)     </div><div class="line">	&#123;</div><div class="line">	  <span class="built_in">printf</span>(<span class="string">"This is after event process.\n"</span>);          </div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">// Pseudocode</span></div><div class="line">	runFunctionAsThread(&amp;doSomeEventProcess): </div><div class="line"></div><div class="line">	doOtherProcessAfterEventDone();</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="WaitForMultipleObject"><a href="#WaitForMultipleObject" class="headerlink" title="WaitForMultipleObject()"></a>WaitForMultipleObject()</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function">DWORD WINAPI <span class="title">WaitForMultipleObjects</span><span class="params">(</span></span></div><div class="line">  <span class="number">_</span>In_       DWORD  nCount,</div><div class="line">  <span class="number">_</span>In_ <span class="keyword">const</span> HANDLE *lpHandles,</div><div class="line">  <span class="number">_</span>In_       BOOL   bWaitAll,</div><div class="line">  <span class="number">_</span>In_       DWORD  dwMilliseconds</div><div class="line">);</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Parameters</strong><ul>
+<li>nCount =&gt; 目標物件的Handler數量 (不可為0)</li>
+<li>lpHandles =&gt; 儲存Handler pointer的 array</li>
+<li>bWaitAll =&gt; <strong>TRUE</strong>表示須等到所有的物件皆為signaled才會返回, <strong>FALSE</strong>表示任一物件為signaled即返回</li>
+<li>dwMilliseconds =&gt; 等待時間 (可設定為INFINITE)</li>
+</ul>
+</li>
+<li><strong>返回值</strong><ul>
+<li>WAIT_OBJECT_0 ~ (WAIT_OBJECT_0 + nCount– 1)<ul>
+<li>bWaitAll為TRUE時, 所有的物件皆為signaled返回WAIT_OBJECT_0</li>
+<li>bWaitAll為FALSE時, <strong>返回值 - WAIT_OBJECT_0</strong>即為signaled物件(lpHandles)的index<ul>
+<li>若同時有多個物件signaled, 返回值為所有signaled物件中最小index的物件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WAIT_ABANDONED_0 ~ (WAIT_ABANDONED_0 + nCount - 1)<ul>
+<li>bWaitAll為TRUE時, 至少有一返回物件的mutex是被鎖定的</li>
+<li>bWaitAll為FALSE時, 表示返回物件的mutex是被鎖定的</li>
+</ul>
+</li>
+<li>WAIT_TIMEOUT =&gt; 等待時間結束時, 目標對象仍未signaled</li>
+</ul>
+</li>
+</ul>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><p><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/ms687055(v=vs.85" target="_blank" rel="external">Waiting for Multiple Objects</a>.aspx)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">HANDLE ghEvents[<span class="number">2</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	HANDLE hThread;</div><div class="line">	</div><div class="line">	<span class="comment">// Create two event objects</span></div><div class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) </div><div class="line">	&#123; </div><div class="line">		ghEvents[i] = CreateEvent( </div><div class="line">		<span class="literal">NULL</span>,   <span class="comment">// default security attributes</span></div><div class="line">		FALSE,  <span class="comment">// auto-reset event object</span></div><div class="line">		FALSE,  <span class="comment">// initial state is nonsignaled</span></div><div class="line">		<span class="literal">NULL</span>);  <span class="comment">// unnamed object</span></div><div class="line"></div><div class="line">		<span class="keyword">if</span> (ghEvents[i] == <span class="literal">NULL</span>) </div><div class="line">		&#123; </div><div class="line">			<span class="built_in">printf</span>(<span class="string">"CreateEvent error: %d\n"</span>, GetLastError() ); </div><div class="line">			ExitProcess(<span class="number">0</span>); </div><div class="line">		&#125; </div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="comment">// Wait for the thread to signal one of the event objects</span></div><div class="line">	dwEvent = WaitForMultipleObjects( </div><div class="line">		<span class="number">2</span>,           <span class="comment">// number of objects in array</span></div><div class="line">		ghEvents,     <span class="comment">// array of objects</span></div><div class="line">		FALSE,       <span class="comment">// wait for any object</span></div><div class="line">		<span class="number">5000</span>);       <span class="comment">// five-second wait</span></div><div class="line">	</div><div class="line"></div><div class="line">	<span class="comment">// The return value indicates which event is signaled</span></div><div class="line">	<span class="keyword">switch</span> (dwEvent) </div><div class="line">	&#123; </div><div class="line">		<span class="comment">// ghEvents[0] was signaled</span></div><div class="line">		<span class="keyword">case</span> WAIT_OBJECT_0 + <span class="number">0</span>: </div><div class="line">			<span class="comment">// <span class="doctag">TODO:</span> Perform tasks required by this event</span></div><div class="line">			<span class="built_in">printf</span>(<span class="string">"First event was signaled.\n"</span>);</div><div class="line">			<span class="keyword">break</span>; </div><div class="line"></div><div class="line">		<span class="comment">// ghEvents[1] was signaled</span></div><div class="line">		<span class="keyword">case</span> WAIT_OBJECT_0 + <span class="number">1</span>: </div><div class="line">			<span class="comment">// <span class="doctag">TODO:</span> Perform tasks required by this event</span></div><div class="line">			<span class="built_in">printf</span>(<span class="string">"Second event was signaled.\n"</span>);</div><div class="line">			<span class="keyword">break</span>; </div><div class="line"></div><div class="line">		<span class="keyword">case</span> WAIT_TIMEOUT:</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"Wait timed out.\n"</span>);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line"></div><div class="line">		<span class="comment">// Return value is invalid.</span></div><div class="line">		<span class="keyword">default</span>: </div><div class="line">			<span class="built_in">printf</span>(<span class="string">"Wait error: %d\n"</span>, GetLastError()); </div><div class="line">			ExitProcess(<span class="number">0</span>); </div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="comment">// Close event handles</span></div><div class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) </div><div class="line">		CloseHandle(ghEvents[i]); </div><div class="line"></div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/ms682396(v=vs.85" target="_blank" rel="external">CreateEvent function</a>.aspx)</li>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/aa379560(v=vs.85" target="_blank" rel="external">SECURITY_ATTRIBUTES</a>.aspx)</li>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/ms686915(v=vs.85" target="_blank" rel="external">Using Event Objects</a>.aspx)</li>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/ms687032(v=vs.85" target="_blank" rel="external">WaitForSingleObject function</a>.aspx)</li>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/ms687025(v=vs.85" target="_blank" rel="external">WaitForMultipleObjects function</a>.aspx)</li>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/ms687055(v=vs.85" target="_blank" rel="external">Waiting for Multiple Objects</a>.aspx)</li>
+<li><a href="http://blog.yam.com/swwuyam/article/11418020" target="_blank" rel="external">Multi-thread 同步 上 (C++心得分享)</a></li>
+<li><a href="http://blog.csdn.net/xiaobai1593/article/details/6672193" target="_blank" rel="external">WaitFOrSingleObject()函數、WaitForMultipleObject函數(白永輝的專欄)</a></li>
+</ol>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/#post-footer" class="postShorten-excerpt_link link">
+                                留言與分享
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/">
                             SSH KEY 新增 &amp; 多重key設定方式
                         </a>
@@ -360,6 +485,25 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a class="link-unstyled" href="http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                            <h3 class="media-heading">Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects)</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    2016年8月12日
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -367,7 +511,7 @@
                 data-message-zero="沒有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 1 篇文章
+                找到 2 篇文章
             </p>
         </div>
     </div>

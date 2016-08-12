@@ -6,19 +6,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Nemo Note">
-    <title>所有文章 - Nemo Note</title>
+    <title>Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects) - Nemo Note</title>
     <meta name="author" content="Nemo Chen">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta property="og:type" content="blog">
-<meta property="og:title" content="Nemo Note">
-<meta property="og:url" content="http://nemochentw.github.io/archives/index.html">
+    <meta name="description" content="Windows Object Signal
+有信號 =&amp;gt; Object可使用(閒置 Signaled)
+無信號 =&amp;gt; Object正在被使用(運行中 non-Signaled)
+
+記憶方式可參考下圖
+更詳細的signaled &amp;amp; non-signaled說明可參考Stackoverflow
+
+==Santhosh Pai asked:==“A signaled state in">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects)">
+<meta property="og:url" content="http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/index.html">
 <meta property="og:site_name" content="Nemo Note">
+<meta property="og:description" content="Windows Object Signal
+有信號 =&amp;gt; Object可使用(閒置 Signaled)
+無信號 =&amp;gt; Object正在被使用(運行中 non-Signaled)
+
+記憶方式可參考下圖
+更詳細的signaled &amp;amp; non-signaled說明可參考Stackoverflow
+
+==Santhosh Pai asked:==“A signaled state in">
+<meta property="og:image" content="https://googledrive.com/host/0B38IBXjEyL6JbDRqUDZJVVNva3M">
+<meta property="og:updated_time" content="2016-08-12T15:04:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nemo Note">
+<meta name="twitter:title" content="Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects)">
+<meta name="twitter:description" content="Windows Object Signal
+有信號 =&amp;gt; Object可使用(閒置 Signaled)
+無信號 =&amp;gt; Object正在被使用(運行中 non-Signaled)
+
+記憶方式可參考下圖
+更詳細的signaled &amp;amp; non-signaled說明可參考Stackoverflow
+
+==Santhosh Pai asked:==“A signaled state in">
+<meta name="twitter:image" content="https://googledrive.com/host/0B38IBXjEyL6JbDRqUDZJVVNva3M">
     
     
         
@@ -47,7 +74,7 @@
         
     
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">Nemo Note</a>
@@ -71,7 +98,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -186,26 +213,21 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="4"
                  class="
                         hasCoverMetaIn
                         ">
                 
-    <section class="postShorten-group main-content-wrap">
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
-                            Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Windows multi-thread (WaitForSingleObject, WaitForMultipleObjects)
+        </h1>
+    
+    <div class="post-meta">
     <time itemprop="datePublished" datetime="2016-08-12T23:02:20+08:00">
 	
 		    8月 12, 2016
@@ -214,10 +236,11 @@
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <h2 id="Windows-Object-Signal"><a href="#Windows-Object-Signal" class="headerlink" title="Windows Object Signal"></a>Windows Object Signal</h2><ul>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <h2 id="Windows-Object-Signal"><a href="#Windows-Object-Signal" class="headerlink" title="Windows Object Signal"></a>Windows Object Signal</h2><ul>
 <li><strong>有信號</strong> =&gt; Object可使用(閒置 Signaled)</li>
 <li><strong>無信號</strong> =&gt; Object正在被使用(運行中 non-Signaled)</li>
 </ul>
@@ -302,101 +325,77 @@
 <li><a href="http://blog.csdn.net/xiaobai1593/article/details/6672193" target="_blank" rel="external">WaitFOrSingleObject()函數、WaitForMultipleObject函數(白永輝的專欄)</a></li>
 </ol>
 
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/#post-footer" class="postShorten-excerpt_link link">
-                                留言與分享
-                            </a>
-                        </p>
-                    
-                </div>
             
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/">
-                            SSH KEY 新增 &amp; 多重key設定方式
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-08-05T13:48:41+08:00">
-	
-		    8月 05, 2016
-    	
-    </time>
-    
-        <span>分類 </span>
-        
-    <a class="category-link" href="/categories/Technical/">Technical</a>
-
-
-    
-</div>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">標籤</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/C/">C++</a> <a class="tag tag--primary tag--small t-link" href="/tags/Windows/">Windows</a>
 
             </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/" data-tooltip="SSH KEY 新增 &amp; 多重key設定方式">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+        <li class="post-action">
             
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p><strong>產生SSH KEY</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -f ~/.ssh/sshkeyfilename -C &quot;yourIdOrMail&quot;</div></pre></td></tr></table></figure></p>
-<p><strong>多重ssh key 設定方式</strong></p>
-<p>Format<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Host alias</div><div class="line">HostName bitbucket.org</div><div class="line">IdentityFile ~/.ssh/identity</div></pre></td></tr></table></figure></p>
-<p>Example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">host gitoadmin</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/adminkey</div><div class="line"></div><div class="line">host nemogito</div><div class="line">    hostname someurl.com</div><div class="line">    identityfile ~/.ssh/nemogitokey</div><div class="line"></div><div class="line">host nemochentwBitbucket</div><div class="line">    hostname bitbucket.org</div><div class="line">    IdentityFile ~/.ssh/nemochentwBitbucket</div></pre></td></tr></table></figure></p>
-<p>The Repo will become like.</p>
-<ul>
-<li>git@someurl.com:gitolite-admin<ul>
-<li>=&gt; git@gitoadmin:gitolite-admin (This will use adminkey)</li>
-</ul>
-</li>
-<li>git@someurl.com:ReaderLibrary<ul>
-<li>=&gt; git@nemogito:ReaderLibrary (This will use nemogitokey)</li>
-</ul>
-</li>
-<li>git@bitbucket.org:NemoChenTW/someproject.git<ul>
-<li>=&gt; git@nemochentwBitbucket:NemoChenTW/someproject.git (This will use nemochentwBitbucket)</li>
-</ul>
-</li>
-</ul>
-<p><strong>參考資料</strong></p>
-<ul>
-<li><a href="https://confluence.atlassian.com/bitbucket/configure-multiple-ssh-identities-for-gitbash-mac-osx-linux-271943168.html" target="_blank" rel="external">Configure multiple SSH identities for GitBash, Mac OSX, &amp; Linux</a></li>
-</ul>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/2016/08/05/SSH-KEY-新增-多重key設定方式/#post-footer" class="postShorten-excerpt_link link">
-                                留言與分享
-                            </a>
-                        </p>
-                    
-                </div>
+                <a class="post-action-btn btn btn--default" href="#">
             
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">第 1 頁 共 1 頁</li>
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+            
+        
+    </div>
+</article>
 
 
 
@@ -407,6 +406,84 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/08/05/SSH-KEY-新增-多重key設定方式/" data-tooltip="SSH KEY 新增 &amp; 多重key設定方式">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nemochentw.github.io/2016/08/12/Windows-multi-thread-WaitForSingleObject-WaitForMultipleObjects/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
             
         </div>
         
@@ -521,6 +598,8 @@
         <!--SCRIPTS-->
 <script src="/assets/js/script-rt08quwts7iav5x0cfd2ym0gb5qkd1lvrsmwrakxtkhefmaaes4ywkmnjnwf.min.js"></script>
 <!--SCRIPTS END-->
+
+    
 
 
 
